@@ -1,0 +1,1 @@
+print("raflu Reliable and fast Linux updater")
