@@ -12,10 +12,15 @@ def update_check():
 
 
 def format_output(out):
-    a = out.find("und")
-    out_number = a +4
-    count = out[out_number]
-    print(count)
+    locator = out.find("und") +4
+    i = 0
+    update_count = ""
+    while not out[locator + i].isspace():
+        digit = out[locator + i]
+        update_count = update_count + digit
+        i = i + 1
+
+    print(update_count)
 
 
 def send_message(out):
