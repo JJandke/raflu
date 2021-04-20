@@ -23,7 +23,6 @@ def format_output(out):
 
     # update count
     update_locator = out.find("neu") - 18
-    # update_count = out[update_locator]
     j = 0
     stop = "n"
     update_count = ""
@@ -32,14 +31,13 @@ def format_output(out):
         update_count = update_count + update_digit
         j = j - 1
 
-    print(restricted_count, update_count)
+    send_message(update_count, restricted_count)
 
 
-def send_message(out):
-    mTitle = "New updates are available"
-    mText = "Following updates are available:\n {updates}".format(updates=out)
-    os.system('notify-send "' + mTitle + '" "' + mText + '"')
-    print("\n\n", out)
+def send_message(update_count, restricted_count):
+    m_title = "Updates are available"
+    m_text = "There are {0} updates aviable\n{1} more are retained".format(update_count, restricted_count)
+    os.system('notify-send "' + m_title + '" "' + m_text + '"')
 
 
 update_check()
