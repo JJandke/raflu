@@ -25,19 +25,21 @@ def format_output(out):
     update_locator = out.find("neu") - 18
     j = 0
     stop = "n"
-    update_count = ""
-    while not stop in out[update_locator + j]:
+    update_count_rev = ""
+    while stop not in out[update_locator + j]:
         update_digit = out[update_locator + j]
-        update_count = update_count + update_digit
+        update_count_rev = update_count_rev + update_digit
         j = j - 1
 
+    update_count = update_count_rev[::-1]
     send_message(update_count, restricted_count)
 
 
 def send_message(update_count, restricted_count):
+    duration = "50000"
     m_title = "Updates are available"
     m_text = "There are {0} updates aviable\n{1} more are retained".format(update_count, restricted_count)
-    os.system('notify-send "' + m_title + '" "' + m_text + '"')
+    os.system('notify-send "' + m_title + '" "' + m_text + '" "-t" "' + duration + '" ')
 
 
 update_check()
